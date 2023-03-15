@@ -1,6 +1,14 @@
-import Navber from './navbar/Navbar'
+import Navbar from './navbar/Navbar'
 import Sidebar from './sidebar/Sidebar'
+import Widget from './widget/Widget'
+import Featured from './featured/feautured'
+import Chart from './chart/Chart'
+import Table from './table/Table'
 export {
-    Navber,
-    Sidebar
+    Navbar,
+    Sidebar,
+    Widget,
+    Featured,
+    Chart,
+    Table
 }

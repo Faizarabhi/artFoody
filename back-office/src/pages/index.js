@@ -8,5 +8,5 @@ export {
     Single,
     List,
     Login,
-    New
+    New,
 }
