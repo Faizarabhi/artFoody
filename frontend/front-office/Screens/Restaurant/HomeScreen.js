@@ -17,7 +17,7 @@ import {
   const ITEM_WIDTH = width / 2 - SPACING * 3;
   
   const HomeScreen = () => {
-    const [activeCategory, setActiveCategory] = useState(0);
+    const [activeCategory, setactiveCategory] = useState(0);
     return (
       <SafeAreaView>
         <ScrollView>
@@ -39,7 +39,7 @@ import {
                   style={{
                     fontSize: SPACING * 1.7,
                     fontWeight: "800",
-                    color: colors.dark,
+                    color: colors.text,
                   }}
                 >
                   Erikaasav
@@ -50,14 +50,14 @@ import {
                   <Ionicons
                     name="notifications-outline"
                     size={SPACING * 3.5}
-                    color={colors.dark}
+                    color={colors.text}
                   />
                 </TouchableOpacity>
                 <TouchableOpacity>
                   <Ionicons
                     name="menu"
                     size={SPACING * 3.5}
-                    color={colors.dark}
+                    color={colors.text}
                   />
                 </TouchableOpacity>
               </View>
@@ -79,7 +79,7 @@ import {
               <Ionicons name="search" color={colors.gray} size={SPACING * 2.7} />
               <TextInput
                 placeholder="Want to .."
-                placeholderTextColor={colors.gray}
+                placeholdertextColor={colors.gray}
                 style={{
                   color: colors.gray,
                   fontSize: SPACING * 2,
@@ -92,7 +92,7 @@ import {
                 <TouchableOpacity
                   style={{ marginRight: SPACING * 3 }}
                   key={index}
-                  onPress={() => setActiveCategory(index)}
+                  onPress={() => setactiveCategory(index)}
                 >
                   <Text
                     style={[

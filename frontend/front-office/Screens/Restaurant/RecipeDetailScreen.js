@@ -206,7 +206,7 @@ import {
                   style={{
                     fontSize: SPACING * 2,
                     fontWeight: "700",
-                    color: colors.dark,
+                    color: colors.text,
                   }}
                 >
                   Ingredients
@@ -245,7 +245,7 @@ import {
                 style={{
                   fontSize: SPACING * 2,
                   fontWeight: "700",
-                  color: colors.dark,
+                  color: colors.text,
                   marginBottom: SPACING,
                 }}
               >
