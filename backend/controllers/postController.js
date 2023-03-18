@@ -7,8 +7,7 @@ const User = require('../models/userModel')
 // @route   GET /api/post
 // @access  Private
 const getPosts = asyncHandler(async (req, res) => {
-    // console.log(req)
-  const posts = await Post.find({ user: req.user })
+  const posts = await Post.find()
   res.status(200).json(posts)
 })
 
@@ -91,7 +90,7 @@ const deletePost = asyncHandler(async (req, res) => {
 })
 
 module.exports = {
-    getPosts,
+  getPosts,
     setPost,
     updatedPost,
     deletePost,

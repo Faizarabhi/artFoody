@@ -12,7 +12,7 @@ const App = () => {
     <>
     {/* <SignupScreen/> */}
   {/* <SigninScreen/> */}
-      {/* <HomeScreen/> */}
+      <HomeScreen/>
       {/* <WelcomeScreen/> */}
       {/* <RecipeDetailScreen recipe={DATA[0].recipes[1]} /> */}
     </>
