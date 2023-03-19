@@ -6,18 +6,18 @@ const multer = require('multer')
 
 
 const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, './uploads')
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + '-' + file.originalname)
-  },
+    destination: function (req, file, cb) {
+        cb(null, './uploads')
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + '-' + file.originalname)
+    },
 })
 
 const upload = multer({ storage: storage })
 
 router.route('/').get(getPosts).post(protect, upload.single('image'), (req, res) => setPost(req, res, upload))
 
-router.route('/:id').delete(protect, deletePost).put(protect, updatedPost)
+router.route('/:id').delete(protect, deletePost).put(protect, upload.single('image'), (req, res) => setPost(req, res, upload), updatedPost)
 
 module.exports = router

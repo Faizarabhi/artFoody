@@ -15,9 +15,7 @@ const getPosts = asyncHandler(async (req, res) => {
 // @route   POST /api/posts
 // @access  Private
 
-// const setPost= ()=>{
-//   console.log("hello")
-// }
+
 const setPost = asyncHandler(async (req, res, upload) => {
   const { body } = req.body
   const image = req.file.filename // This will contain the filename of the uploaded image
@@ -41,8 +39,7 @@ const setPost = asyncHandler(async (req, res, upload) => {
 // @desc    Update post
 // @route   PUT /api/posts/:id
 // @access  Private
-const updatedPost = asyncHandler(async (req, res) => {
-    // console.log(res.user)
+const updatedPost = asyncHandler( async (req, res) => {
   const post = await Post.findById(req.params.id)
 
   if (!post) {
@@ -62,12 +59,16 @@ const updatedPost = asyncHandler(async (req, res) => {
     throw new Error('User not authorized')
   }
 
-  const updatedPost = await Post.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-  })
+  // Update the post data
+  post.body = req.body.body;
+  if (req.file) {
+    post.image = req.file.filename;
+  }
+  const updatedPost = await post.save();
 
   res.status(200).json(updatedPost)
 })
+
 
 // @desc    Delete post
 // @route   DELETE /api/posts/:id
