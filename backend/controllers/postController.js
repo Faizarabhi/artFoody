@@ -1,5 +1,5 @@
 const asyncHandler = require('express-async-handler')
-
+const multer = require('multer');
 const Post = require('../models/postModel')
 const User = require('../models/userModel')
 
@@ -14,11 +14,17 @@ const getPosts = asyncHandler(async (req, res) => {
 // @desc    Set post
 // @route   POST /api/posts
 // @access  Private
-const setPost = asyncHandler(async (req, res) => {
-    const { body, image } = req.body
-  if (!body || !image ) {
+
+// const setPost= ()=>{
+//   console.log("hello")
+// }
+const setPost = asyncHandler(async (req, res, upload) => {
+  const { body } = req.body
+  const image = req.file.filename // This will contain the filename of the uploaded image
+
+  if (!body || !image) {
     res.status(400)
-    throw new Error('Please add a body field')
+    throw new Error('Please add a body field and an image')
   }
 
   const post = await Post.create({
@@ -29,6 +35,8 @@ const setPost = asyncHandler(async (req, res) => {
 
   res.status(200).json(post)
 })
+
+
 
 // @desc    Update post
 // @route   PUT /api/posts/:id

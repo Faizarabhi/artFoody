@@ -1,19 +1,12 @@
 const asyncHandler = require('express-async-handler')
 
-const Post = require('../models/postModel')
-const User = require('../models/userModel')
+
 const Like = require('../models/likeModel')
 
-// @desc    Get post
-// @route   GET /api/post
-// @access  Private
-const getLikes = asyncHandler(async (req, res) => {
-    //     const posts = await Post.find()
-    //     res.status(200).json(posts)
-})
 
-// @desc    Set post
-// @route   POST /api/posts
+
+// @desc    Set like
+// @route   like /api/likes
 // @access  Private
 const setLike = asyncHandler(async (req, res) => {
     try {
@@ -26,11 +19,8 @@ const setLike = asyncHandler(async (req, res) => {
             const newLike = new Like({
                 user: userId,
                 post: postId,
-                state: state
             });
-
             await newLike.save();
-
             res.status(201).json({ success: true, data: newLike });
         } else {
             // If the like already exists, update the state field if necessary
