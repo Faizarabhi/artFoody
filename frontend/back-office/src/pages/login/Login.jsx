@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,8 +12,14 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
+import { useAuth } from '../../context/auth/useAuth'
+import { useNavigate } from 'react-router-dom';
+import { http } from '../../cors/apicore';
+// import loginData from '../../context/auth/apicore';
 function Copyright(props) {
+
+
+
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
@@ -27,17 +33,30 @@ function Copyright(props) {
 }
 
 const theme = createTheme();
-
 export default function Login() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+  const navigate = useNavigate();
+  const { login } = useAuth();
+  const [inputs, setinputs] = useState({ email: "", password: "" })
 
+  const handleChange = (e) => {
+    setinputs((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value
+    }))
+    // console.log(e.target.value);
+    
+    // login({
+      //   email: 'john.doe@email.com',
+      //   password: 'John Doe',
+      // });
+      // navigate('/');
+    };
+    const handleLogin = (e) => {
+      e.preventDefault();
+      http.post('users/login',inputs)
+      // loginData(inputs)
+    // console.log(inputs)
+  }
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -54,17 +73,19 @@ export default function Login() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-          {/* <Link to="/" style={{ textDecoration: "none" }}> */}
             Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form"
+            noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
               fullWidth
+              value={inputs.email}
+              onChange={handleChange}
+              name="email"
               id="email"
               label="Email Address"
-              name="email"
               autoComplete="email"
               autoFocus
             />
@@ -72,6 +93,8 @@ export default function Login() {
               margin="normal"
               required
               fullWidth
+              value={inputs.password}
+              onChange={handleChange}
               name="password"
               label="Password"
               type="password"
@@ -82,13 +105,14 @@ export default function Login() {
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
-            <Button href='/'
-              type="submit"
+            <Button
+              type="button"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              onClick={handleLogin}
             >
-              Sign 
+              Sign
             </Button>
             <Grid container>
               <Grid item xs>
