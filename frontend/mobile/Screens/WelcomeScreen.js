@@ -6,14 +6,14 @@ import {
     View,
   } from "react-native";
   import React from "react";
-  import { SPACING, colors, DATA} from '../../Restaurant'
+  import { SPACING, colors, DATA} from '../Restaurant'
 
   
-  const WelcomeScreen = () => {
+  const WelcomeScreen = ({navigation}) => {
     return (
       <ImageBackground
         style={{ flex: 1 }}
-        source={require("../../assets/pexels-william-choquette-2641886.jpeg")}
+        source={require("../assets/pexels-william-choquette-2641886.jpeg")}
       >
         <View style={{ flex: 1, backgroundColor: colors.black, opacity: 0.2 }} />
         <View
@@ -48,6 +48,9 @@ import {
               Dolore reprehenderit id ea eu voluptate deserunt occaecat occaecat.
             </Text>
             <TouchableOpacity
+             onPress={() =>
+              navigation.navigate('Signin')
+            }
               style={{
                 padding: SPACING * 2,
                 backgroundColor: colors.white,

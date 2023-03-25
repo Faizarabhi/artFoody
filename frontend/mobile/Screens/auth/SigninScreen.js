@@ -2,16 +2,27 @@ import {
     SafeAreaView,
     StyleSheet,
     Text,
-    TextInput,
     TouchableOpacity,
     View,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { SPACING, colors, DATA, FontSize } from '../../Restaurant'
+import { useDispatch } from "react-redux";
 import AppTextInput from "../../components/AppTextInput";
 
-const SignupScreen = () => {
+
+const SigninScreen = ({ navigation }) => {
+    const dispatch = useDispatch();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const handleLogin = () => {
+        // Authenticate user here
+        const user = { email, password };
+        console.log(user)
+        // console.log(login(user),'user')
+        // dispatch(login(user));
+    };
     return (
         <SafeAreaView>
             <View
@@ -32,17 +43,17 @@ const SignupScreen = () => {
                             marginVertical: SPACING * 3,
                         }}
                     >
-                        Create account
+                        Login here
                     </Text>
                     <Text
                         style={{
-                            // fontFamily: Font["poppins-regular"],
-                            fontSize: FontSize.small,
-                            maxWidth: "80%",
+                            // fontFamily: Font["poppins-semiBold"],
+                            fontSize: FontSize.large,
+                            maxWidth: "60%",
                             textAlign: "center",
                         }}
                     >
-                        Create an account so you can explore all the existing jobs
+                        Welcome back you've been missed!
                     </Text>
                 </View>
                 <View
@@ -50,12 +61,29 @@ const SignupScreen = () => {
                         marginVertical: SPACING * 3,
                     }}
                 >
-                    <AppTextInput placeholder="Email" />
-                    <AppTextInput placeholder="Password" />
-                    <AppTextInput placeholder="Confirm Password" />
+                    <AppTextInput placeholder="Email" value={email} onChangeText={setEmail} />
+                    <AppTextInput placeholder="Password" value={password} onChangeText={setPassword} />
+                </View>
+
+                <View>
+                    <Text
+                        style={{
+                            // fontFamily: Font["poppins-semiBold"],
+                            fontSize: FontSize.small,
+                            color: colors.primary,
+                            alignSelf: "flex-end",
+                        }}
+                    >
+                        Forgot your password ?
+                    </Text>
                 </View>
 
                 <TouchableOpacity
+                    onPress={() => {
+                        handleLogin()
+                        navigation.navigate('Home')
+                    }
+                    }
                     style={{
                         padding: SPACING * 2,
                         backgroundColor: colors.primary,
@@ -71,6 +99,7 @@ const SignupScreen = () => {
                     }}
                 >
                     <Text
+
                         style={{
                             // fontFamily: Font["poppins-bold"],
                             color: colors.onPrimary,
@@ -78,11 +107,13 @@ const SignupScreen = () => {
                             fontSize: FontSize.large,
                         }}
                     >
-                        Sign up
+                        Sign in
                     </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    onPress={() => navigate("Login")}
+                    onPress={() =>
+                        navigation.navigate('Signup')
+                    }
                     style={{
                         padding: SPACING,
                     }}
@@ -95,7 +126,7 @@ const SignupScreen = () => {
                             fontSize: FontSize.small,
                         }}
                     >
-                        Already have an account
+                        Create new account
                     </Text>
                 </TouchableOpacity>
 
@@ -169,8 +200,8 @@ const SignupScreen = () => {
             </View>
         </SafeAreaView>
     );
-}
+};
 
-export default SignupScreen
+export default SigninScreen;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});

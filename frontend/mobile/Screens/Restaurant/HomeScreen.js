@@ -16,7 +16,7 @@ import {
   
   const ITEM_WIDTH = width / 2 - SPACING * 3;
   
-  const HomeScreen = () => {
+  const HomeScreen = ({navigation}) => {
     const [activeCategory, setactiveCategory] = useState(0);
     return (
       <SafeAreaView>
@@ -123,6 +123,9 @@ import {
             >
               {DATA[activeCategory].recipes.map((item) => (
                 <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate('Details')
+                }
                   style={{ width: ITEM_WIDTH, marginBottom: SPACING * 2 }}
                   key={item.id}
                 >

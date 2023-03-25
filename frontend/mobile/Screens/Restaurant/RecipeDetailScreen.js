@@ -16,6 +16,7 @@ import {
   
   
   const RecipeDetailScreen = ({ recipe }) => {
+    console.log(recipe)
     return (
       <>
         <ScrollView>
@@ -29,7 +30,7 @@ import {
                 flexDirection: "row",
                 justifyContent: "space-between",
               }}
-              source={recipe.image}
+              // source={recipe.image}
             >
               <TouchableOpacity
                 style={{
@@ -85,7 +86,7 @@ import {
                       fontWeight: "700",
                     }}
                   >
-                    {recipe.name}
+                    {/* {recipe.name} */}
                   </Text>
                 </View>
                 <View
@@ -112,7 +113,7 @@ import {
                       color: colors.black,
                     }}
                   >
-                    {recipe.rating}
+                    {/* {recipe.rating} */}
                   </Text>
                 </View>
               </View>
@@ -143,7 +144,7 @@ import {
                       color: colors.gray,
                     }}
                   >
-                    {recipe.time}
+                    {/* {recipe.time} */}
                   </Text>
                 </View>
                 <View
@@ -170,7 +171,7 @@ import {
                       color: colors.gray,
                     }}
                   >
-                    {recipe.del_time}
+                    {/* {recipe.del_time} */}
                   </Text>
                 </View>
                 <View
@@ -197,7 +198,7 @@ import {
                       color: colors.gray,
                     }}
                   >
-                    {recipe.cooking_time}
+                    {/* {recipe.cooking_time} */}
                   </Text>
                 </View>
               </View>
@@ -211,14 +212,14 @@ import {
                 >
                   Ingredients
                 </Text>
-                {recipe.ingredients.map((ingredient) => (
+                {/* {recipe.ingredients.map((ingredient) => ( */}
                   <View
                     style={{
                       marginVertical: SPACING,
                       flexDirection: "row",
                       alignItems: "center",
                     }}
-                    key={ingredient.id}
+                    // key={ingredient.id}
                   >
                     <View
                       style={{
@@ -236,10 +237,10 @@ import {
                         marginLeft: SPACING,
                       }}
                     >
-                      {ingredient.title}
+                      {/* {ingredient.title} */}
                     </Text>
                   </View>
-                ))}
+                {/* ))} */}
               </View>
               <Text
                 style={{
@@ -258,7 +259,7 @@ import {
                   color: colors.gray,
                 }}
               >
-                {recipe.description}
+                {/* {recipe.description} */}
               </Text>
             </View>
           </View>
@@ -293,7 +294,7 @@ import {
                   marginLeft: SPACING / 2,
                 }}
               >
-                $ {recipe.price}
+                {/* $ {recipe.price} */}
               </Text>
             </TouchableOpacity>
           </View>

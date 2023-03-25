@@ -11,8 +11,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { SPACING, colors, DATA, FontSize } from '../../Restaurant'
 import AppTextInput from "../../components/AppTextInput";
 
-
-const SigninScreen = () => {
+const SignupScreen = ({navigation}) => {
     return (
         <SafeAreaView>
             <View
@@ -33,17 +32,17 @@ const SigninScreen = () => {
                             marginVertical: SPACING * 3,
                         }}
                     >
-                        Login here
+                        Create account
                     </Text>
                     <Text
                         style={{
-                            // fontFamily: Font["poppins-semiBold"],
-                            fontSize: FontSize.large,
-                            maxWidth: "60%",
+                            // fontFamily: Font["poppins-regular"],
+                            fontSize: FontSize.small,
+                            maxWidth: "80%",
                             textAlign: "center",
                         }}
                     >
-                        Welcome back you've been missed!
+                        Create an account so you can explore all the existing jobs
                     </Text>
                 </View>
                 <View
@@ -53,22 +52,13 @@ const SigninScreen = () => {
                 >
                     <AppTextInput placeholder="Email" />
                     <AppTextInput placeholder="Password" />
-                </View>
-
-                <View>
-                    <Text
-                        style={{
-                            // fontFamily: Font["poppins-semiBold"],
-                            fontSize: FontSize.small,
-                            color: colors.primary,
-                            alignSelf: "flex-end",
-                        }}
-                    >
-                        Forgot your password ?
-                    </Text>
+                    <AppTextInput placeholder="Confirm Password" />
                 </View>
 
                 <TouchableOpacity
+                 onPress={() =>
+                    navigation.navigate('Home')
+                  }
                     style={{
                         padding: SPACING * 2,
                         backgroundColor: colors.primary,
@@ -91,16 +81,19 @@ const SigninScreen = () => {
                             fontSize: FontSize.large,
                         }}
                     >
-                        Sign in
+                        Sign up
                     </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                    onPress={() => navigate("Register")}
+                    onPress={() => navigate("Login")}
                     style={{
                         padding: SPACING,
                     }}
                 >
                     <Text
+                     onPress={() =>
+                        navigation.navigate('Signin')
+                      }
                         style={{
                             // fontFamily: Font["poppins-semiBold"],
                             color: colors.text,
@@ -108,7 +101,7 @@ const SigninScreen = () => {
                             fontSize: FontSize.small,
                         }}
                     >
-                        Create new account
+                        Already have an account
                     </Text>
                 </TouchableOpacity>
 
@@ -182,8 +175,8 @@ const SigninScreen = () => {
             </View>
         </SafeAreaView>
     );
-};
+}
 
-export default SigninScreen;
+export default SignupScreen
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({})

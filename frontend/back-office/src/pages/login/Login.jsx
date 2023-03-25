@@ -53,7 +53,7 @@ export default function Login() {
     };
     const handleLogin = (e) => {
       e.preventDefault();
-      http.post('users/login',inputs)
+      http.get('/users')
       // loginData(inputs)
     // console.log(inputs)
   }

@@ -7,7 +7,7 @@ if (localStorage.getItem("user") === null) {
 } else {
   TOKEN = localStorage.getItem("user");
   headers = {
-    // "Content-Type": "multipart/form-data",
+    "Content-Type": "multipart/form-data",
     Authorization: `Bearer ${TOKEN}`
   };
 }
