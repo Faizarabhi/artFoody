@@ -8,10 +8,10 @@ const colors = {
   onPrimary: "#fff",
   borderWithOpacity: "#E40754",
   lightPrimary: "#f1f4ff",
-  gray: "#ECECEC",
   black: "#000",
-  yellow: `rgb(250,230,50)`,
   gray: `rgb(120,120,120)`,
+  yellow: `rgb(250,230,50)`,
+  lightblue: `#79DCF1`,
   light: `ECECEC`,
   borderWithOpacity: "#E40754",
   lightPrimary: "#f1f4ff",
@@ -19,3 +19,4 @@ const colors = {
 };
 
 export default colors;
+

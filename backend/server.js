@@ -9,8 +9,7 @@ const connectDB = require('./config/db');
 const bodyParser = require('body-parser');
 const port = process.env.PORT || 5000;
 
-
-connectDB();
+connectDB(); 
 
 const app = express();
 app.use(express.json());
@@ -22,22 +21,14 @@ if (!fs.existsSync(uploadDirectory)) {
     fs.mkdirSync(uploadDirectory);
 }
 
-
-
-app.use(cors({
-    origin: '*',
-    optionsSuccessStatus: 200
-  }));
-  
 app.use('/uploads', express.static('uploads')); 
- 
+
+app.use(cors());
 
 app.use('/api/users',( require('./routes/userRoutes')));
 app.use('/api/posts',( require('./routes/postRoutes')));
 app.use('/api/comments',( require('./routes/commentRoutes')));
 app.use('/api/likes',( require('./routes/likeRoutes')));
-
-
 
 app.use(errorHandler);
 

@@ -1,26 +1,26 @@
-import { useEffect } from 'react';
-import { useUser } from './useUser';
-import { useLocalStorage } from '../../features/useLocalStorage';
+// import { useEffect } from 'react';
+// import { useUser } from './useUser';
+// // import { useLocalStorage } from '../../features/useLocalStorage';
 
-export const useAuth = () => {
-  const { user, addUser, removeUser } = useUser();
-  const { getItem } = useLocalStorage();
+// export const useAuth = () => {
+//   // const { user, addUser, removeUser } = useUser();
+//   // const { getItem } = useLocalStorage();
 
-  useEffect(() => {
-    const user = getItem('user');
-    if (user) {
-      addUser(JSON.parse(user));
-    }
-  }, []);
+//   useEffect(() => {
+//     // const user = getItem('user');
+//     if (user) {
+//       addUser(JSON.parse(user));
+//     }
+//   }, []);
 
-  const login = (user) => {
-    addUser(user);
-  };
+//   const login = (user) => {
+//     addUser(user);
+//   };
 
-  const logout = () => {
+//   const logout = () => {
     
-    removeUser();
-  };
+//     removeUser();
+//   };
 
-  return { user, login, logout };
-};
+//   return { user, login, logout };
+// };

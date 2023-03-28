@@ -4,25 +4,29 @@ import {
     Text,
     TouchableOpacity,
     View,
+    TextInput
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { SPACING, colors, DATA, FontSize } from '../../Restaurant'
-import { useDispatch } from "react-redux";
 import AppTextInput from "../../components/AppTextInput";
-
+import { login, reset } from '../../features/auth/authSlice'
+import { useSelector, useDispatch } from 'react-redux'
 
 const SigninScreen = ({ navigation }) => {
+    
     const dispatch = useDispatch();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const handleLogin = () => {
-        // Authenticate user here
-        const user = { email, password };
-        console.log(user)
-        // console.log(login(user),'user')
-        // dispatch(login(user));
-    };
+    const [focused, setFocused] = useState(false);
+    const [formData, setFormData] = useState({
+        email: 'faiza@gmail.com',
+        password: '12345',
+    })
+
+
+    const onSubmit = ()=>{
+        console.log(formData)
+        dispatch(login(formData));
+    }
     return (
         <SafeAreaView>
             <View
@@ -61,8 +65,36 @@ const SigninScreen = ({ navigation }) => {
                         marginVertical: SPACING * 3,
                     }}
                 >
-                    <AppTextInput placeholder="Email" value={email} onChangeText={setEmail} />
-                    <AppTextInput placeholder="Password" value={password} onChangeText={setPassword} />
+                    <TextInput value={formData.email} onChangeText={(value) => setFormData({ ...formData, email: value })} placeholder="Email" 
+                     onFocus={() => setFocused(true)}
+                     onBlur={() => setFocused(false)}
+                     placeholderTextColor={colors.darkText}
+                     style={[
+                       styles.input,
+                        focused && {
+                          borderWidth: 3,
+                          borderColor: colors.primary,
+                          shadowOffset: { width: 4, height: SPACING },
+                          shadowColor: colors.primary,
+                          shadowOpacity: 0.2,
+                          shadowRadius: SPACING,
+                        },
+                      ]}/>
+                    <TextInput value={formData.password} onChangeText={(value) => setFormData({ ...formData, password: value })} placeholder="password"
+                     onFocus={() => setFocused(true)}
+                     onBlur={() => setFocused(false)}
+                     placeholderTextColor={colors.darkText}
+                     style={[
+                       styles.input,
+                        focused && {
+                          borderWidth: 3,
+                          borderColor: colors.primary,
+                          shadowOffset: { width: 4, height: SPACING },
+                          shadowColor: colors.primary,
+                          shadowOpacity: 0.2,
+                          shadowRadius: SPACING,
+                        },
+                      ]} />
                 </View>
 
                 <View>
@@ -80,7 +112,7 @@ const SigninScreen = ({ navigation }) => {
 
                 <TouchableOpacity
                     onPress={() => {
-                        handleLogin()
+                        onSubmit()
                         navigation.navigate('Home')
                     }
                     }
@@ -156,7 +188,7 @@ const SigninScreen = ({ navigation }) => {
                         <TouchableOpacity
                             style={{
                                 padding: SPACING,
-                                backgroundColor: colors.gray,
+                                backgroundColor: colors.lightblue,
                                 borderRadius: SPACING / 2,
                                 marginHorizontal: SPACING,
                             }}
@@ -170,7 +202,7 @@ const SigninScreen = ({ navigation }) => {
                         <TouchableOpacity
                             style={{
                                 padding: SPACING,
-                                backgroundColor: colors.gray,
+                                backgroundColor: colors.lightblue,
                                 borderRadius: SPACING / 2,
                                 marginHorizontal: SPACING,
                             }}
@@ -184,7 +216,7 @@ const SigninScreen = ({ navigation }) => {
                         <TouchableOpacity
                             style={{
                                 padding: SPACING,
-                                backgroundColor: colors.gray,
+                                backgroundColor: colors.lightblue,
                                 borderRadius: SPACING / 2,
                                 marginHorizontal: SPACING,
                             }}
@@ -204,4 +236,13 @@ const SigninScreen = ({ navigation }) => {
 
 export default SigninScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    input:  {
+        fontSize: FontSize.small,
+        padding: SPACING * 2,
+        backgroundColor: colors.lightPrimary,
+        borderRadius: SPACING,
+        marginVertical: SPACING,
+      },
+     
+});

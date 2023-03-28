@@ -13,6 +13,8 @@ import {
   import { Ionicons } from "@expo/vector-icons";
   import { SPACING, colors, DATA} from '../../Restaurant'
   const { width } = Dimensions.get("window");
+  import { AntDesign } from '@expo/vector-icons';
+  import Header from "../../components/Header";
   
   const ITEM_WIDTH = width / 2 - SPACING * 3;
   
@@ -22,49 +24,11 @@ import {
       <SafeAreaView>
         <ScrollView>
           <View style={{ padding: SPACING * 2 }}>
-            <View
-              style={{ flexDirection: "row", justifyContent: "space-between" }}
-            >
-              <View style={{ flexDirection: "row", alignItems: "center" }}>
-                <Image
-                  style={{
-                    width: SPACING * 4.5,
-                    height: SPACING * 4.5,
-                    borderRadius: SPACING * 3,
-                    marginRight: SPACING,
-                  }}
-                  source={require("../../assets/restaurant/avatar.jpg")}
-                />
-                <Text
-                  style={{
-                    fontSize: SPACING * 1.7,
-                    fontWeight: "800",
-                    color: colors.text,
-                  }}
-                >
-                  Erikaasav
-                </Text>
-              </View>
-              <View style={{ flexDirection: "row", alignItems: "center" }}>
-                <TouchableOpacity style={{ marginRight: SPACING }}>
-                  <Ionicons
-                    name="notifications-outline"
-                    size={SPACING * 3.5}
-                    color={colors.text}
-                  />
-                </TouchableOpacity>
-                <TouchableOpacity>
-                  <Ionicons
-                    name="menu"
-                    size={SPACING * 3.5}
-                    color={colors.text}
-                  />
-                </TouchableOpacity>
-              </View>
-            </View>
+            
+            <Header/>
             <View style={{ width: "60%", marginTop: SPACING * 2 }}>
               <Text style={{ fontSize: SPACING * 3, fontWeight: "700" }}>
-                What would you like to order?
+                What would you like to recipes?
               </Text>
             </View>
             <View
@@ -87,7 +51,8 @@ import {
                 }}
               />
             </View>
-            <ScrollView horizontal>
+            <ScrollView horizontal
+            >
               {DATA.map((category, index) => (
                 <TouchableOpacity
                   style={{ marginRight: SPACING * 3 }}
@@ -156,7 +121,12 @@ import {
                     Today discount {item.discount}
                   </Text>
                   <Text style={{ fontSize: SPACING * 2, fontWeight: "700" }}>
-                    $ {item.price}
+                   
+                    {item.price>50?
+                  <AntDesign name="heart" size={24} color="black" />
+                  :
+                  <AntDesign name="hearto" size={24} color="black" />
+                }
                   </Text>
                 </TouchableOpacity>
               ))}
