@@ -3,36 +3,39 @@ const multer = require('multer');
 const Post = require('../models/postModel')
 const User = require('../models/userModel')
 const Like = require('../models/likeModel')
+const jwt = require('jsonwebtoken');
 // @desc    Get post
 // @route   GET /api/post
 // @access  Private
 const getPosts = asyncHandler(async (req, res) => {
- 
- 
+  
   const posts = await Post.find();
-  const userId = req.params.id; // Assuming you have the user ID in the req object
-  
-  const likesCounts = await Promise.all(posts.map(post => {
-    return Like.count({ post: post._id });
-  }));
-  
-  const postLikes = await Promise.all(posts.map(post => {
-    return Like.exists({ user: userId, post: post._id });
-  }));
-  
-  const postsWithLikes = posts.map((post, i) => {
-    return {
-      ...post.toObject(),
-      likes: likesCounts[i],
-      likedByUser: postLikes[i]
-    };
-  });
-  
-  console.log(postsWithLikes,'rr');
-    
-  res.status(200).json(postsWithLikes);
-})
+const token = req.headers.authorization.split(' ')[1]; // Assuming the token is passed in the Authorization header
+const decodedToken = jwt.verify(token, 'your_jwt_secret_key');
+const userId = decodedToken.userId;
 
+const likesCounts = await Promise.all(posts.map(post => {
+  return Like.countDocuments({ post: post._id });
+}));
+
+const postLikes = await Promise.all(posts.map(async post => {
+  const exists = await Like.exists({ user: userId, post: post._id });
+  return exists;
+}));
+
+const postsWithLikes = posts.map((post, i) => {
+  return {
+    ...post.toObject(),
+    likes: likesCounts[i],
+    likedByUser: postLikes[i]
+  };
+});
+
+res.status(200).json(postsWithLikes);
+
+  // TODO 
+  // in front end consome this  function for affiche and for reactive with likes conome likeController
+})
 // @desc    Set post
 // @route   POST /api/posts
 // @access  Private

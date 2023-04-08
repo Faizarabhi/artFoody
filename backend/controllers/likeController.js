@@ -3,12 +3,15 @@ const asyncHandler = require('express-async-handler')
 
 const Like = require('../models/likeModel')
 
+const getLike = asyncHandler(async(req,res)=>{
+})
 
 
 // @desc    Set like
 // @route   like /api/likes
 // @access  Private
 const setLike = asyncHandler(async (req, res) => {
+    
     try {
         const postId = req.params.id;
         const userId = req.user._id;
