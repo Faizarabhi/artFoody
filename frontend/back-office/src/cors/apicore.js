@@ -3,8 +3,10 @@ const BASE_URL = 'http://localhost:3000/api/';
 let headers;
 let TOKEN;
 if (localStorage.getItem("user") === null) {
+  
   headers = {};
 } else {
+  // i have probeleme cors cause headers 
   TOKEN = localStorage.getItem("user");
   headers = {
     "Content-Type": "multipart/form-data",
@@ -13,7 +15,7 @@ if (localStorage.getItem("user") === null) {
 }
 let http = axios.create({
   baseURL: BASE_URL,
-  withCredentials: true,
-  headers: headers
+  // withCredentials: true,
+  // headers: headers
 });
 export { http, BASE_URL };

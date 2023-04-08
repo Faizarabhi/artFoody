@@ -16,7 +16,7 @@ import { DarkModeContext } from "../../context/darkModeContext";
 import { useContext } from "react";
 import { useAuth } from "../../context/auth/useAuth";
 const Sidebar = () => {
-  const { logout } = useAuth();
+  // const { logout } = useAuth();
   const { dispatch } = useContext(DarkModeContext);
   return (
     <div className="sidebar">
@@ -81,7 +81,9 @@ const Sidebar = () => {
             <AccountCircleOutlinedIcon className="icon" />
             <span>Profile</span>
           </li>
-          <li onClick={logout}>
+          <li 
+          // onClick={logout}
+          >
 
             <ExitToAppIcon className="icon" />
             <span>Logout</span>

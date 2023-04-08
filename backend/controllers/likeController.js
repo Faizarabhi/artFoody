@@ -34,10 +34,21 @@ const setLike = asyncHandler(async (req, res) => {
         res.status(500).json({ success: false, message: 'Error updating like' });
     }
 })
+const countLike = asyncHandler(async (req, res) => {
+    try {
+        const postId = req.params.id;
+        
+        const number = await Like.count({ post: postId });
+        res.status(200).json({ success: true, data: number, id:postId });
 
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ success: false, message: 'Error count like' });
+    }
+})
 
 module.exports = {
-    
+
     setLike,
-   
+    countLike
 }

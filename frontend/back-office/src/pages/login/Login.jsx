@@ -15,6 +15,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useAuth } from '../../context/auth/useAuth'
 import { useNavigate } from 'react-router-dom';
 import { http } from '../../cors/apicore';
+import axios from 'axios';
 // import loginData from '../../context/auth/apicore';
 function Copyright(props) {
 
@@ -37,23 +38,25 @@ export default function Login() {
   const navigate = useNavigate();
   const { login } = useAuth();
   const [inputs, setinputs] = useState({ email: "", password: "" })
-
+  let data;
   const handleChange = (e) => {
     setinputs((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value
     }))
-    // console.log(e.target.value);
+    console.log(e.target.value);
     
-    // login({
-      //   email: 'john.doe@email.com',
-      //   password: 'John Doe',
-      // });
-      // navigate('/');
+    login(inputs);
     };
     const handleLogin = (e) => {
       e.preventDefault();
-      http.get('/users')
+      // http.post('users/login',inputs)
+      // .then((data)=>console.log(data,'ici data'))
+      axios.post('http://localhost:3000/api/users/login',inputs).then((res)=>console.log(res.data,'t'))
+
+      console.log(data)
+      // localStorage.setItem('token', data.token);
+      // navigate('/');
       // loginData(inputs)
     // console.log(inputs)
   }

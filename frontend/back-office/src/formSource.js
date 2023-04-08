@@ -1,77 +1,50 @@
-export const userInputs = [
+export const productInputs = [
     {
       id: 1,
-      label: "Username",
+      label: "title",
       type: "text",
-      placeholder: "john_doe",
+      placeholder: "title",
     },
     {
       id: 2,
-      label: "Name and surname",
+      label: "body",
       type: "text",
-      placeholder: "John Doe",
+      placeholder: "body",
     },
     {
       id: 3,
-      label: "Email",
-      type: "mail",
-      placeholder: "john_doe@gmail.com",
+      label: "description",
+      type: "text",
+      placeholder: "description",
     },
     {
       id: 4,
-      label: "Phone",
+      label: "categorie",
       type: "text",
-      placeholder: "+1 234 567 89",
+      placeholder: "categorie",
     },
-    {
-      id: 5,
-      label: "Password",
-      type: "password",
-    },
-    {
-      id: 6,
-      label: "Address",
-      type: "text",
-      placeholder: "Elton St. 216 NewYork",
-    },
-    {
-      id: 7,
-      label: "Country",
-      type: "text",
-      placeholder: "USA",
-    },
+ 
   ];
   
-  export const productInputs = [
+  
+  export const userInputs = [
     {
       id: 1,
-      label: "Title",
+      label: "name",
       type: "text",
-      placeholder: "Apple Macbook Pro",
+      placeholder: "Name User",
     },
     {
       id: 2,
-      label: "Description",
+      label: "email",
       type: "text",
-      placeholder: "Description",
+      placeholder: "Email",
     },
     {
       id: 3,
-      label: "Category",
+      label: "password",
       type: "text",
-      placeholder: "Computers",
+      placeholder: "Password",
     },
-    {
-      id: 4,
-      label: "Price",
-      type: "text",
-      placeholder: "100",
-    },
-    {
-      id: 5,
-      label: "Stock",
-      type: "text",
-      placeholder: "in stock",
-    },
+   
   ];
-  

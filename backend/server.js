@@ -22,8 +22,14 @@ if (!fs.existsSync(uploadDirectory)) {
 }
 
 app.use('/uploads', express.static('uploads')); 
-
-app.use(cors());
+app.use(cors(
+    {
+      origin: "http://localhost:3001",
+      methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+      preflightContinue: true,
+      optionsSuccessStatus: 204,
+    },
+  ));
 
 app.use('/api/users',( require('./routes/userRoutes')));
 app.use('/api/posts',( require('./routes/postRoutes')));

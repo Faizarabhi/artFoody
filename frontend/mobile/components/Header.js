@@ -13,6 +13,7 @@ import {
   import { Ionicons } from "@expo/vector-icons";
   import { SPACING, colors, DATA} from '../Restaurant'
   import { useSelector } from 'react-redux';
+  import { MaterialIcons } from '@expo/vector-icons';
 const Header = () => {
     const user = useSelector((state) => state) 
   return (
@@ -41,18 +42,16 @@ const Header = () => {
     </View>
     <View style={{ flexDirection: "row", alignItems: "center" }}>
       <TouchableOpacity style={{ marginRight: SPACING }}>
-        <Ionicons
+        {/* <Ionicons
           name="notifications-outline"
           size={SPACING * 3.5}
           color={colors.text}
-        />
+        /> */}
       </TouchableOpacity>
       <TouchableOpacity>
-        <Ionicons
-          name="menu"
-          size={SPACING * 3.5}
-          color={colors.text}
-        />
+      <MaterialIcons
+       name="logout" size={SPACING * 3.5}
+          color={colors.text} />
       </TouchableOpacity>
     </View>
   </View>

@@ -11,9 +11,22 @@ const postSchema = mongoose.Schema(
       type: String,
       required: [true, 'Please add a body value'],
     },
+    title: {
+      type: String,
+      required: [true, 'Please add a title value'],
+    },
+    description: {
+      type: String,
+      required: [true, 'Please add a description value'],
+    },
     image: {
       type: String,
       required: [true, 'Please add a image value'],
+    },
+    category:{
+      
+      type: String,
+      required: [true, 'Please add a category value'],
     },
   },
   {

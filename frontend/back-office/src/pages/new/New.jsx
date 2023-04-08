@@ -1,6 +1,7 @@
 import "./new.scss";
-   
+
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
+import { Input } from "@mui/material";
 import { useState } from "react";
 
 const New = ({ inputs, title }) => {
@@ -25,7 +26,7 @@ const New = ({ inputs, title }) => {
           </div>
           <div className="right">
             <form>
-              <div className="formInput">
+              <div className="form">
                 <label htmlFor="file">
                   Image: <DriveFolderUploadOutlinedIcon className="icon" />
                 </label>
@@ -38,10 +39,7 @@ const New = ({ inputs, title }) => {
               </div>
 
               {inputs.map((input) => (
-                <div className="formInput" key={input.id}>
-                  <label>{input.label}</label>
-                  <input type={input.type} placeholder={input.placeholder} />
-                </div>
+                <Input key={input.id} label={input.label} type={input.type} placeholder={input.placeholder} />
               ))}
               <button>Send</button>
             </form>
