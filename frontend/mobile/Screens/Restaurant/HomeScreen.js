@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   View,
   Dimensions,
+  FlatList
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
@@ -18,6 +19,7 @@ import Header from "../../components/Header";
 import { getRecipes, recipesSlice, reset } from '../../features/recipes/recipesSlice'
 import { useSelector, useDispatch } from 'react-redux'
 const ITEM_WIDTH = width / 2 - SPACING * 3;
+import PostCard from "../../components/PostCard";
 
 const HomeScreen = ({ navigation }) => {
   const { recipes } = useSelector(state => state.recipe)
@@ -26,7 +28,7 @@ const HomeScreen = ({ navigation }) => {
   useEffect(() => {
     dispatch(getRecipes())
   }, [])
-  console.log(recipes[1], 'data')
+  console.log("---------------------------------------------------------------------------------------------------------------------------------------",recipes, '----------------------------------------------------------------')
   return (
     <SafeAreaView>
       <ScrollView>
@@ -80,6 +82,7 @@ const HomeScreen = ({ navigation }) => {
                     },
                   ]}
                 >
+                  
                   {category.title}
                 </Text>
               </TouchableOpacity>
@@ -87,57 +90,14 @@ const HomeScreen = ({ navigation }) => {
           </ScrollView>
           <View
             style={{
-              flexDirection: "row",
+              flexDirection: "row", 
               flexWrap: "wrap",
               justifyContent: "space-between",
               marginVertical: SPACING * 2,
             }}
           >
-            {recipes.map((item) => (
-              <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate('Details')
-                }
-                style={{ width: ITEM_WIDTH, marginBottom: SPACING * 2 }}
-                key={item.id}
-              >
-                <Image
-                  style={{
-                    width: "100%",
-                    height: ITEM_WIDTH + SPACING * 3,
-                    borderRadius: SPACING * 2,
-                  }}
-                  source={item.image}
-                  
-                />
-                <Text
-                  style={{
-                    fontSize: SPACING * 2,
-                    fontWeight: "700",
-                    marginTop: SPACING,
-                  }}
-                >
-                  {item.title}
-                </Text>
-                <Text
-                  style={{
-                    fontSize: SPACING * 1.5,
-                    color: colors.gray,
-                    marginVertical: SPACING / 2,
-                  }}
-                >
-                  Categorie: {item.category}
-                </Text>
-                <Text style={{ fontSize: SPACING * 2, fontWeight: "700" }}>
-
-                  {item.price > 50 ?
-                    <AntDesign name="heart" size={24} color="black" />
-                    :
-                    <AntDesign name="hearto" size={24} color="black" />
-                  }
-                </Text>
-              </TouchableOpacity>
-            ))}
+             {recipes.map((item) => (<PostCard  data={item}/>))}
+           
           </View>
         </View>
       </ScrollView>

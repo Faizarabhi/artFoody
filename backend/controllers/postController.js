@@ -8,31 +8,35 @@ const jwt = require('jsonwebtoken');
 // @route   GET /api/post
 // @access  Private
 const getPosts = asyncHandler(async (req, res) => {
-  
   const posts = await Post.find();
-const token = req.headers.authorization.split(' ')[1]; // Assuming the token is passed in the Authorization header
-const decodedToken = jwt.verify(token, 'your_jwt_secret_key');
-const userId = decodedToken.userId;
+  const userId = req.params.id; // Assuming the user ID is passed as a parameter
 
-const likesCounts = await Promise.all(posts.map(post => {
-  return Like.countDocuments({ post: post._id });
-}));
+  const likesCounts = await Promise.all(posts.map(post => {
+    return Like.countDocuments({ post: post._id });
+  }));
 
-const postLikes = await Promise.all(posts.map(async post => {
-  const exists = await Like.exists({ user: userId, post: post._id });
-  return exists;
-}));
+  const postLikes = await Promise.all(posts.map(async post => {
+    const exists = await Like.exists({ user: userId, post: post._id });
+    return exists;
+  }));
 
-const postsWithLikes = posts.map((post, i) => {
-  return {
-    ...post.toObject(),
-    likes: likesCounts[i],
-    likedByUser: postLikes[i]
-  };
-});
+  const postsWithLikes = posts.map((post, i) => {
+    return {
+      ...post.toObject(),
+      likes: likesCounts[i],
+      likedByUser: postLikes[i]
+    };
+  });
 
-res.status(200).json(postsWithLikes);
-
+  res.status(200).json(postsWithLikes);
+  // TODO 
+  // in front and consome this  function for affiche and for reactive with likes conome likeController
+})
+const getPost = asyncHandler(async (req, res) => {
+  const postId = req.params
+  const post = await Post.findOne({ id: postId });
+  console.log(post, 't')
+  res.status(200).json(post)
   // TODO 
   // in front end consome this  function for affiche and for reactive with likes conome likeController
 })
@@ -42,9 +46,9 @@ res.status(200).json(postsWithLikes);
 
 
 const setPost = asyncHandler(async (req, res, upload) => {
-  const { body,title,description,category } = req.body
+  const { body, title, description, category } = req.body
   const image = `../../../../uploads/${req.file.filename}` // This will contain the filename of the uploaded image
-console.log(image)
+  console.log(image)
   if (!body || !image) {
     res.status(400)
     throw new Error('Please add a body field and an image')
@@ -53,9 +57,9 @@ console.log(image)
   const post = await Post.create({
     body: body,
     image: image,
-    title:title,
-    description:description,
-    category:category,
+    title: title,
+    description: description,
+    category: category,
     user: req.user.id,
   })
 
@@ -67,10 +71,11 @@ console.log(image)
 // @desc    Update post
 // @route   PUT /api/posts/:id
 // @access  Private
-const updatedPost = asyncHandler( async (req, res) => {
+const updatedPost = asyncHandler(async (req, res) => {
   const post = await Post.findById(req.params.id)
 
-  if (!post) {title
+  if (!post) {
+    title
     res.status(400)
     throw new Error('Post not found')
   }
@@ -103,9 +108,9 @@ const updatedPost = asyncHandler( async (req, res) => {
 // @access  Private
 const deletePost = asyncHandler(async (req, res) => {
   const post = await Post.findById(req.params.id)
-//   const productSchema = new Schema({ 
-//     likes: [{ type: Schema.Types.ObjectId, ref:'likes' }]
-// }, {timestamps: true});
+  //   const productSchema = new Schema({ 
+  //     likes: [{ type: Schema.Types.ObjectId, ref:'likes' }]
+  // }, {timestamps: true});
   if (!post) {
     res.status(400)
     throw new Error('Post not found')
@@ -130,7 +135,8 @@ const deletePost = asyncHandler(async (req, res) => {
 
 module.exports = {
   getPosts,
-    setPost,
-    updatedPost,
-    deletePost,
+  getPost,
+  setPost,
+  updatedPost,
+  deletePost,
 }
