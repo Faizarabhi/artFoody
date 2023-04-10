@@ -1,9 +1,14 @@
 
-import RecipeDetailScreen from "./Screens/Restaurant/RecipeDetailScreen";
-import WelcomeScreen from "./Screens/Restaurant/WelcomeScreen";
-import HomeScreen from "./Screens/Restaurant/HomeScreen";
+import RecipeDetailScreen from "./RecipeDetailScreen";
+import HomeScreen from "./HomeScreen";
+import Profile from "./Profile";
+import Favorite from "./Favorite";
+
+
+
 export {
     RecipeDetailScreen,
-    WelcomeScreen,
-    HomeScreen
+    HomeScreen,
+    Profile,
+    Favorite
 }

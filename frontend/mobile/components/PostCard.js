@@ -6,7 +6,7 @@ const { width } = Dimensions.get("window");
 import { AntDesign } from '@expo/vector-icons';
 const ITEM_WIDTH = width / 2 - SPACING * 3;
 
-const PostCard = ({data}) => {
+const PostCard = ({data}, navigation) => {
     const item = data
     console.log(item    )
   return (
