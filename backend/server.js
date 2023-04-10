@@ -7,7 +7,7 @@ const cors = require('cors');
 const { errorHandler } = require('./middleware/errorMiddleware');
 const connectDB = require('./config/db');
 const bodyParser = require('body-parser');
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 6000;
 
 connectDB(); 
 
@@ -24,7 +24,7 @@ if (!fs.existsSync(uploadDirectory)) {
 app.use('/uploads', express.static('uploads')); 
 app.use(cors(
     {
-      origin: "http://localhost:3001",
+      origin: "http://localhost:3000",
       methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
       preflightContinue: true,
       optionsSuccessStatus: 204,
