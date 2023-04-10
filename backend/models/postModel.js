@@ -23,6 +23,10 @@ const postSchema = mongoose.Schema(
       type: String,
       required: [true, 'Please add a image value'],
     },
+    cookingTime:{
+      type: String,
+      required: [true, 'Please add a cookingTime value'],
+    },
     category:{
       
       type: String,

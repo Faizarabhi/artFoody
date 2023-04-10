@@ -1,5 +1,4 @@
 import {
-  Image,
   SafeAreaView,
   ScrollView,
   StyleSheet,
@@ -8,27 +7,23 @@ import {
   TouchableOpacity,
   View,
   Dimensions,
-  FlatList
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { SPACING, colors, DATA } from '../../Restaurant'
-const { width } = Dimensions.get("window");
-import { AntDesign } from '@expo/vector-icons';
 import Header from "../../components/Header";
-import { getRecipes, recipesSlice, reset } from '../../features/recipes/recipesSlice'
-import { useSelector, useDispatch } from 'react-redux'
-const ITEM_WIDTH = width / 2 - SPACING * 3;
+import { getRecipes } from '../../features/recipes/recipesSlice'
+import { useSelector, useDispatch } from 'react-redux';
 import PostCard from "../../components/PostCard";
 
-const HomeScreen = ({ navigation }) => {
+const HomeScreen = () => {
   const { recipes } = useSelector(state => state.recipe)
   const dispatch = useDispatch();
   const [activeCategory, setactiveCategory] = useState(0);
   useEffect(() => {
     dispatch(getRecipes())
   }, [])
-  console.log("---------------------------------------------------------------------------------------------------------------------------------------",recipes, '----------------------------------------------------------------')
+  console.log("---------------------------------------------------------------------------------------------------------------------------------------", recipes, '----------------------------------------------------------------')
   return (
     <SafeAreaView>
       <ScrollView>
@@ -82,7 +77,7 @@ const HomeScreen = ({ navigation }) => {
                     },
                   ]}
                 >
-                  
+
                   {category.title}
                 </Text>
               </TouchableOpacity>
@@ -90,14 +85,14 @@ const HomeScreen = ({ navigation }) => {
           </ScrollView>
           <View
             style={{
-              flexDirection: "row", 
+              flexDirection: "row",
               flexWrap: "wrap",
               justifyContent: "space-between",
               marginVertical: SPACING * 2,
             }}
           >
-             {recipes.map((item) => (<PostCard  data={item}/>))}
-           
+            {recipes.map((item,index) => (<PostCard data={item} key={index} />))}
+
           </View>
         </View>
       </ScrollView>

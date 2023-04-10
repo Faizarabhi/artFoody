@@ -46,7 +46,7 @@ const getPost = asyncHandler(async (req, res) => {
 
 
 const setPost = asyncHandler(async (req, res, upload) => {
-  const { body, title, description, category } = req.body
+  const { body, title, description, category,cookingTime } = req.body
   const image = `../../../../uploads/${req.file.filename}` // This will contain the filename of the uploaded image
   console.log(image)
   if (!body || !image) {
@@ -60,6 +60,7 @@ const setPost = asyncHandler(async (req, res, upload) => {
     title: title,
     description: description,
     category: category,
+    cookingTime:cookingTime,
     user: req.user.id,
   })
 

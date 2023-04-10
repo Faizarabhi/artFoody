@@ -7,6 +7,6 @@ const {
 const { protect } = require('../middleware/authMiddleware');
 
 
-router.route('/:id').get(countLike).post(protect, setLike)
+router.route('/:id').get(countLike).post(setLike)
 
 module.exports = router
