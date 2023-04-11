@@ -18,7 +18,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='welcome'
+      <Stack.Navigator initialRouteName='welcome'
           screenOptions={{
             headerShown: false
           }}>

@@ -46,9 +46,11 @@ const getPost = asyncHandler(async (req, res) => {
 
 
 const setPost = asyncHandler(async (req, res, upload) => {
-  const { body, title, description, category } = req.body
-  const image = `../../../../uploads/${req.file.filename}` // This will contain the filename of the uploaded image
-  console.log(image)
+  const { body, title, description, category,cookingTime } = req.body
+  // const image = "require(../assets/restaurant/".${req.file.filename}.")"
+   // This will contain the filename of the uploaded image
+  // console.log(image)               
+  const image = 'require(\'../assets/restaurant/'+`${req.file.filename}`+'\')';
   if (!body || !image) {
     res.status(400)
     throw new Error('Please add a body field and an image')
@@ -60,6 +62,7 @@ const setPost = asyncHandler(async (req, res, upload) => {
     title: title,
     description: description,
     category: category,
+    cookingTime:cookingTime,
     user: req.user.id,
   })
 

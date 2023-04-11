@@ -12,6 +12,7 @@ export const getRecipes = createAsyncThunk(
   'recipes/getAll',
   async (_, thunkAPI) => {
     try {
+      console.log('first')
       return await recipesService.getAllRecipes()
     } catch (error) {
       const message =

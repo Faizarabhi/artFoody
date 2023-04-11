@@ -1,29 +1,46 @@
 import { View, Text,TouchableOpacity,Dimensions,Image } from 'react-native'
 import { SPACING, colors, DATA } from '../Restaurant'
-
-import React from 'react'
+// import { AntDesign } from '@expo/vector-icons';
 const { width } = Dimensions.get("window");
 import { AntDesign } from '@expo/vector-icons';
 const ITEM_WIDTH = width / 2 - SPACING * 3;
-
-const PostCard = ({data}, navigation) => {
+import { useNavigation } from '@react-navigation/native';
+import axios from 'axios'
+const PostCard = ({ data }) => {
+    // localhost:3000/api/likes/6433257ffa19c1f5185f149d
+    const navigation = useNavigation();
+    const id = data._id
     const item = data
-    console.log(item    )
-  return (
-    <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate('Details',{id:item._id})
-                }
-                style={{ width: ITEM_WIDTH, marginBottom: SPACING * 2 }}
-                key={item._id}
-              >
-                <Image
-                  style={{
+    console.log(item.image)
+    const like = async (id) => {
+        console.log(id,"first")
+        return await axios.post('http://172.20.10.2:3000/api/likes/' + `${id}`).then((data)=>console.log(data))
+        // return response
+    }
+
+    // useEffect(() => {
+    //     like(id)
+    // })
+    return (
+        <TouchableOpacity
+            style={{ width: ITEM_WIDTH, marginBottom: SPACING * 2 }}
+            onPress={() =>
+                navigation.navigate('Details', {
+                    itemId: item._id,
+                    data: item
+                })
+            }
+            key={item._id}
+        >
+            <Image
+                style={{
                     width: "100%",
                     height: ITEM_WIDTH + SPACING * 3,
                     borderRadius: SPACING * 2,
                   }}
-                // source={require('../../../../uploads/1680731812041-anna-pelzer-IGfIGP5ONV0-unsplash.jpeg')}
+                source={require('../assets/restaurant/pexels-momo-king-5409015.jpeg')}
+
+                // source={item.image}
 
                 />
                 <Text
@@ -31,13 +48,14 @@ const PostCard = ({data}, navigation) => {
                     fontSize: SPACING * 2,
                     fontWeight: "700",
                     marginTop: SPACING,
-                  }}
-                >
-                  name:{item.title}
-                  {/* name:{item._id} */}
-                </Text>
-                <Text
-                  style={{
+                }}
+            >
+                {item.title}
+              {/* {item.image} */}
+                {/* name:{item._id} */}
+            </Text>
+            <Text
+                style={{
                     fontSize: SPACING * 1.5,
                     color: colors.gray,
                     marginVertical: SPACING / 2,

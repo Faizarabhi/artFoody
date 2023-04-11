@@ -15,8 +15,8 @@ const setLike = asyncHandler(async (req, res) => {
     try {
         const postId = req.params.id;
         const userId = req.user._id;
-        const existingLike = await Like.findOne({ user: userId, post: postId });
-
+        // const userId = "641211a6f1b69a7d06ec7e3c";
+        const existingLike = await Like.findOne({ user: '641211a6f1b69a7d06ec7e3c', post: postId });
         if (!existingLike) {
             // If the like does not exist, create a new one
             const newLike = new Like({

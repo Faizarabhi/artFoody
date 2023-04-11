@@ -1,80 +1,80 @@
 import {
-    ImageBackground,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
-  } from "react-native";
-  import React from "react";
-  import { SPACING, colors, DATA} from '../Restaurant'
+  ImageBackground,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import React from "react";
+import { SPACING, colors, DATA} from '../Restaurant'
 
-  
-  const WelcomeScreen = ({navigation}) => {
-    return (
-      <ImageBackground
-        style={{ flex: 1 }}
-        source={require("../assets/pexels-william-choquette-2641886.jpeg")}
+
+const WelcomeScreen = ({navigation}) => {
+  return (
+    <ImageBackground
+      style={{ flex: 1 }}
+      source={require("../assets/pexels-william-choquette-2641886.jpeg")}
+    >
+      <View style={{ flex: 1, backgroundColor: colors.black, opacity: 0.2 }} />
+      <View
+        style={{
+          position: "absolute",
+          height: "100%",
+          zIndex: 2,
+          width: "100%",
+          justifyContent: "flex-end",
+          paddingHorizontal: SPACING * 2,
+          paddingBottom: SPACING * 5,
+        }}
       >
-        <View style={{ flex: 1, backgroundColor: colors.black, opacity: 0.2 }} />
-        <View
-          style={{
-            position: "absolute",
-            height: "100%",
-            zIndex: 2,
-            width: "100%",
-            justifyContent: "flex-end",
-            paddingHorizontal: SPACING * 2,
-            paddingBottom: SPACING * 5,
-          }}
-        >
-          <View>
+        <View>
+          <Text
+            style={{
+              color: colors.white,
+              fontWeight: "800",
+              fontSize: SPACING * 4.5,
+              textTransform: "capitalize",
+            }}
+          >
+            Let your favorite food find you
+          </Text>
+          <Text
+            style={{
+              color: colors.white,
+              fontWeight: "600",
+              fontSize: SPACING * 1.7,
+            }}
+          >
+            Dolore reprehenderit id ea eu voluptate deserunt occaecat occaecat.
+          </Text>
+          <TouchableOpacity
+           onPress={() =>
+            navigation.navigate('Signin')
+          }
+            style={{
+              padding: SPACING * 2,
+              backgroundColor: colors.white,
+              borderRadius: SPACING * 2,
+              alignItems: "center",
+              marginTop: SPACING * 3,
+            }}
+          >
             <Text
               style={{
-                color: colors.white,
-                fontWeight: "800",
-                fontSize: SPACING * 4.5,
-                textTransform: "capitalize",
+                color: colors.black,
+                fontSize: SPACING * 2,
+                fontWeight: "700",
               }}
             >
-              Let your favorite food find you
+              Explorer Now
             </Text>
-            <Text
-              style={{
-                color: colors.white,
-                fontWeight: "600",
-                fontSize: SPACING * 1.7,
-              }}
-            >
-              Dolore reprehenderit id ea eu voluptate deserunt occaecat occaecat.
-            </Text>
-            <TouchableOpacity
-             onPress={() =>
-              navigation.navigate('Signin')
-            }
-              style={{
-                padding: SPACING * 2,
-                backgroundColor: colors.white,
-                borderRadius: SPACING * 2,
-                alignItems: "center",
-                marginTop: SPACING * 3,
-              }}
-            >
-              <Text
-                style={{
-                  color: colors.black,
-                  fontSize: SPACING * 2,
-                  fontWeight: "700",
-                }}
-              >
-                Explorer Now
-              </Text>
-            </TouchableOpacity>
-          </View>
+          </TouchableOpacity>
         </View>
-      </ImageBackground>
-    );
-  };
-  
-  export default WelcomeScreen;
-  
-  const styles = StyleSheet.create({});
+      </View>
+    </ImageBackground>
+  );
+};
+
+export default WelcomeScreen;
+
+const styles = StyleSheet.create({});

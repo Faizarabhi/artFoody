@@ -27,8 +27,10 @@ const HomeScreen = ({ navigation }) => {
   const [activeCategory, setactiveCategory] = useState(0);
   useEffect(() => {
     dispatch(getRecipes())
+    console.log(recipes.length,'rr')
+    
   }, [])
-
+  console.log("-----------------------------------------------", recipes, '----------------------------------------------------------------')
   return (
     <SafeAreaView>
       <ScrollView>
@@ -107,4 +109,3 @@ const HomeScreen = ({ navigation }) => {
 
 export default HomeScreen;
 
-const styles = StyleSheet.create({});

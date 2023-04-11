@@ -9,14 +9,14 @@ const connectDB = require('./config/db');
 const bodyParser = require('body-parser');
 const port = process.env.PORT || 6000;
 
-connectDB(); 
+ connectDB()
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-const uploadDirectory = './uploads';
+const uploadDirectory = './uploads'; 
 if (!fs.existsSync(uploadDirectory)) {
     fs.mkdirSync(uploadDirectory);
 }
